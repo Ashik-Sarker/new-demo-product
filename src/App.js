@@ -10,6 +10,7 @@ function App() {
       update:[]
   });
   const [isLoading, setIsLoading] = useState(true);
+  const [btnLoader, setBtnLoader] = useState(false);
 
 
   const username = 'ck_35f64c79ebe2cfd6979b6f81c103ff01135ae1b8'
@@ -88,12 +89,14 @@ function App() {
 
 
   const submitData = () => {
+        setBtnLoader(true);
         console.log('submit');
         fetch('https://demostore.mirailit.com/wp-json/wc/v3/products/batch' , requestOptions2)
         .then(res => res.json())
         .then(status => {
           alert('Price Updated Successfully');
           setIsDisabled(true);
+          setBtnLoader(false);
         })
   }
   
@@ -148,12 +151,21 @@ function App() {
         
         
         <div style={{ maxWidth: "90%", marginLeft:'40%',marginBottom:'20px',}}>
-            <button 
-                style={{padding:'14px', background:'blue', color:'white', fontWeight:'600', 
-                fontSize:'16px', letterSpacing:'2px', border:'0px', 
-                borderRadius:'4px', cursor:'pointer', marginTop:'16px'}} 
-                onClick={submitData}
-                >Submit Data</button>
+            {
+            btnLoader 
+              ? <button 
+                  style={{padding:'14px', background:'gray', color:'white', fontWeight:'600', 
+                  fontSize:'16px', letterSpacing:'2px', border:'0px', 
+                  borderRadius:'4px', cursor:'pointer', marginTop:'16px'}}
+                  >Loading...</button>
+              :
+              <button 
+                  style={{padding:'14px', background:'blue', color:'white', fontWeight:'600', 
+                  fontSize:'16px', letterSpacing:'2px', border:'0px', 
+                  borderRadius:'4px', cursor:'pointer', marginTop:'16px'}} 
+                  onClick={submitData}
+                  >Submit Data</button>
+            }
         </div>
     </div>
   );
