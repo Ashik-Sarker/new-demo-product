@@ -5,44 +5,41 @@ import React, { useEffect, useState } from 'react';
 function App() {
 
   const [products, setProducts] = useState([]);
-    const [isDisabled, setIsDisabled] = useState(true);
-    // const [test, setTest] = useState({
-    //     update:[{id:2932, regular_price:'1000'},{id:2931, regular_price:'9000'}]
-    // });
-    const [test, setTest] = useState({
-        update:[]
-    });
-    const [isLoading, setIsLoading] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [test, setTest] = useState({
+      update:[]
+  });
+  const [isLoading, setIsLoading] = useState(true);
 
 
   const username = 'ck_35f64c79ebe2cfd6979b6f81c103ff01135ae1b8'
-    const password = 'cs_1dd3842d9bdc656ace99007faef0bb09a4d34400'
-    const requestOptions = {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Basic ' + btoa(username + ":" + password)
-        }
-    };
+  const password = 'cs_1dd3842d9bdc656ace99007faef0bb09a4d34400'
+  const requestOptions = {
+      method: 'GET',
+      headers: {
+          'Authorization': 'Basic ' + btoa(username + ":" + password)
+      }
+  };
 
 
   const requestOptions2 = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Basic ' + btoa(username + ":" + password)
-        },
-        body: JSON.stringify(test)
-    }
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic ' + btoa(username + ":" + password)
+      },
+      body: JSON.stringify(test)
+  }
 
 
   useEffect(() => {
-        fetch('https://demostore.mirailit.com/wp-json/wc/v3/products', requestOptions)
-            .then(res => res.json())
-            .then(data => {
-              setProducts(data)
-              console.log(data);
-            })
-    }, []);
+      fetch('https://demostore.mirailit.com/wp-json/wc/v3/products', requestOptions)
+          .then(res => res.json())
+          .then(data => {
+            setProducts(data)
+            setIsLoading(false)
+          })
+  }, []);
 
 
   const handlePrice = (e, row) => {
@@ -124,7 +121,10 @@ function App() {
                   <th style={{width:'20%', border:'1px solid'}}>Image</th>
                   <th style={{width:'20%', border:'1px solid'}}>Price</th>
                 </tr>
-                {
+            {
+              isLoading
+                  ? <p style={{textAlign:'center', color:'red'}}>Loading ....</p>
+                  :
                   products.length > 0 && products.map((item) => {
                     return <tr style={{borderBottom:'1px solid gray'}}>
                             <td>{item.name}</td>
