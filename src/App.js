@@ -91,7 +91,10 @@ function App() {
         console.log('submit');
         fetch('https://demostore.mirailit.com/wp-json/wc/v3/products/batch' , requestOptions2)
         .then(res => res.json())
-        .then(status => alert('Price Updated Successfully'))
+        .then(status => {
+          alert('Price Updated Successfully');
+          setIsDisabled(true);
+        })
   }
   
 
@@ -128,8 +131,7 @@ function App() {
                   products.length > 0 && products.map((item) => {
                     return <tr style={{borderBottom:'1px solid gray'}}>
                             <td style={{textAlign:'left'}}>{item.name}</td>
-                            <td style={{height:'60px', textAlign:'center'}}><img style={{height:'100%'}} src= 
-                            {item.images[0].src} alt="" srcset="" /></td>
+                            <td style={{height:'60px', textAlign:'center'}}><img style={{height:'100%'}} src={item.images[0].src} alt="" srcset="" /></td>
                             <td style={{textAlign:'center'}}><input 
                               type="number" 
                               value={item.price} 
