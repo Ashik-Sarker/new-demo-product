@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function App() {
 
@@ -100,60 +100,60 @@ function App() {
 
   return (
     <div style={{ maxWidth:'800px', margin:'auto'}}>
-            <div style={{ maxWidth: "90%", margin: 'auto', marginTop: '20px', display: 'flex',            
-             alignItems:'center'}} className="custom-card">
-                <div style={{flexGrow:'1'}}>
-                    <h2 style={{padding:'0px', marginLeft:'0px'}}>Product List</h2>
-                </div>
-                <div>
-                    <button 
-                    style={{padding:'14px', background:'blue', color:'white', fontWeight:'600', 
-                    fontSize:'16px', letterSpacing:'2px', border:'0px', 
-                    borderRadius:'4px', cursor:'pointer'}} 
-                    onClick={() => setIsDisabled(!isDisabled)}
-                    >Edit Price</button>
-                </div>
+        <div style={{ maxWidth: "90%", margin: 'auto', marginTop: '20px', display: 'flex',            
+          alignItems:'center'}} className="custom-card">
+            <div style={{flexGrow:'1'}}>
+                <h2 style={{padding:'0px', marginLeft:'0px'}}>Product List</h2>
             </div>
-            
-            
-            <div style={{ maxWidth: "90%", margin:'auto', }}>
-                <div style={{width:'100%'}}>
-                  <table>
-                    <tr>
-                      <th style={{width:'50%', border:'1px solid'}}>Product name</th>
-                      <th style={{width:'20%', border:'1px solid'}}>Image</th>
-                      <th style={{width:'20%', border:'1px solid'}}>Price</th>
-                    </tr>
-                    {
-                      products.length > 0 && products.map((item) => {
-                        return <tr style={{borderBottom:'1px solid gray'}}>
-                                <td>{item.name}</td>
-                                <td style={{height:'60px'}}><img style={{height:'100%'}} src= 
-                                {item.images[0].src} alt="" srcset="" /></td>
-                                <td><input 
-                                  type="number" 
-                                  value={item.price} 
-                                  style={{height:"35px", width:'80px'}} 
-                                  disabled={isDisabled}
-                                  onChange={(e) => handlePrice(e, item)}
-                                /></td>
-                              </tr>
-                        })
-                    }
-                  </table>
-                </div>
-            </div>
-            
-            
-            <div style={{ maxWidth: "90%", marginLeft:'84%',marginBottom:'20px',}}>
+            <div>
                 <button 
-                    style={{padding:'14px', background:'blue', color:'white', fontWeight:'600', 
-                    fontSize:'16px', letterSpacing:'2px', border:'0px', 
-                    borderRadius:'4px', cursor:'pointer', marginTop:'16px'}} 
-                    onClick={submitData}
-                    >Submit</button>
+                style={{padding:'14px', background:'blue', color:'white', fontWeight:'600', 
+                fontSize:'16px', letterSpacing:'2px', border:'0px', 
+                borderRadius:'4px', cursor:'pointer'}} 
+                onClick={() => setIsDisabled(!isDisabled)}
+                >Edit Price</button>
             </div>
         </div>
+        
+        
+        <div style={{ maxWidth: "90%", margin:'auto', }}>
+            <div style={{width:'100%'}}>
+              <table>
+                <tr>
+                  <th style={{width:'50%', border:'1px solid'}}>Product name</th>
+                  <th style={{width:'20%', border:'1px solid'}}>Image</th>
+                  <th style={{width:'20%', border:'1px solid'}}>Price</th>
+                </tr>
+                {
+                  products.length > 0 && products.map((item) => {
+                    return <tr style={{borderBottom:'1px solid gray'}}>
+                            <td>{item.name}</td>
+                            <td style={{height:'60px'}}><img style={{height:'100%'}} src= 
+                            {item.images[0].src} alt="" srcset="" /></td>
+                            <td><input 
+                              type="number" 
+                              value={item.price} 
+                              style={{height:"35px", width:'80px'}} 
+                              disabled={isDisabled}
+                              onChange={(e) => handlePrice(e, item)}
+                            /></td>
+                          </tr>
+                    })
+                }
+              </table>
+            </div>
+        </div>
+        
+        
+        <div style={{ maxWidth: "90%", marginLeft:'40%',marginBottom:'20px',}}>
+            <button 
+                style={{padding:'14px', background:'blue', color:'white', fontWeight:'600', 
+                fontSize:'16px', letterSpacing:'2px', border:'0px', 
+                borderRadius:'4px', cursor:'pointer', marginTop:'16px'}} 
+                onClick={submitData}
+                >Submit Data</button>
+        </div>
+    </div>
   );
 }
 
