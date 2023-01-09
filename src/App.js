@@ -118,8 +118,8 @@ function App() {
               <table>
                 <tr>
                   <th style={{width:'50%', border:'1px solid'}}>Product name</th>
-                  <th style={{width:'20%', border:'1px solid'}}>Image</th>
-                  <th style={{width:'20%', border:'1px solid'}}>Price</th>
+                  <th style={{width:'20%', border:'1px solid', textAlign:'center'}}>Image</th>
+                  <th style={{width:'20%', border:'1px solid', textAlign:'center'}}>Price</th>
                 </tr>
             {
               isLoading
@@ -127,13 +127,13 @@ function App() {
                   :
                   products.length > 0 && products.map((item) => {
                     return <tr style={{borderBottom:'1px solid gray'}}>
-                            <td>{item.name}</td>
-                            <td style={{height:'60px'}}><img style={{height:'100%'}} src= 
+                            <td style={{textAlign:'left'}}>{item.name}</td>
+                            <td style={{height:'60px', textAlign:'center'}}><img style={{height:'100%'}} src= 
                             {item.images[0].src} alt="" srcset="" /></td>
-                            <td><input 
+                            <td style={{textAlign:'center'}}><input 
                               type="number" 
                               value={item.price} 
-                              style={{height:"35px", width:'80px'}} 
+                              style={{height:"35px", width:'80px', textAlign:'center'}} 
                               disabled={isDisabled}
                               onChange={(e) => handlePrice(e, item)}
                             /></td>
